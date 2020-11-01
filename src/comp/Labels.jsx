@@ -1,0 +1,74 @@
+import React from 'react';
+import styled from 'styled-components';
+
+export const Highlight = styled.div`
+  height: 6px;
+  position: relative;
+  top: 0px;
+  left: -6px;
+  line-height: 1.6;
+  border-radius: 1px;
+  background-color: darkcyan;
+  z-index: -1;
+  width: calc(100% + 12px);
+`;
+
+export const InputHighlight = styled(Highlight)`
+  top: -9px;
+`;
+
+export const PostDate = styled.p`
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 100;
+  color: white;
+  opacity: 0.5;
+  margin-top: 1rem;
+  padding-left: 0.5rem;
+  justify-self: right;
+  text-align: right;
+  white-space: nowrap;
+`;
+
+export const Label = styled.label`
+  margin: 0.2rem;
+  white-space: nowrap;
+  color: goldenrod;
+  opacity: 0.33;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  font-weight: 700;
+`;
+
+export const BigLabel = styled.header`
+margin-right: 0.2rem;
+margin-top: 0.2rem;
+color: goldenrod;
+opacity: 0.33;
+line-height: 1.4rem;
+font-weight: 700;
+  font-size: 2rem;
+  font-style: italic;
+  opacity: 1;
+  color: white;
+`;
+
+const InnerPostTitle = styled.header`
+  color: white;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 0.8rem;
+  width: min-content;
+  white-space: nowrap;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  margin-top: 0.5rem;
+`;
+
+export const PostTitle = ({ children, ...props }) => (
+  <InnerPostTitle {...props}>
+    {children}
+    {/* <Highlight /> */}
+  </InnerPostTitle>
+);

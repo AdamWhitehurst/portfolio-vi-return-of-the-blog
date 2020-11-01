@@ -1,0 +1,53 @@
+type Blog
+  @model
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [create, read, update, delete] }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
+}
+
+type Post
+  @model
+  @key(name: "byBlog", fields: ["blogID"])
+  @aws_iam
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update, delete] }
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["everyone"], operations: [create, read, update, delete] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  content: String!
+  blogID: ID!
+  blog: Blog @connection(fields: ["blogID"])
+  # comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+}
+
+# type Comment
+#   @model
+#   @key(name: "byPost", fields: ["postID", "content"])
+#   @aws_iam
+#   @aws_cognito_user_pools
+#   @auth(
+#     rules: [
+#       { allow: owner, operations: [create, read, update, delete] }
+#       { allow: public, provider: iam, operations: [read] }
+#       { allow: groups, groups: ["everyone"], operations: [create, read, update, delete] }
+#     ]
+#   ) {
+#   id: ID!
+#   postID: ID!
+#   post: Post @connection(fields: ["postID"])
+#   content: String!
+# }

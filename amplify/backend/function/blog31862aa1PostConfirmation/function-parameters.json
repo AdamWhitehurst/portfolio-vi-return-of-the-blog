@@ -1,0 +1,18 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "blog31862aa1",
+  "functionName": "blog31862aa1PostConfirmation",
+  "resourceName": "blog31862aa1PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "C:\\Users\\Adam\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "roleName": "blog31862aa1PostConfirmation",
+  "skipEdit": true,
+  "GROUP": "everyone",
+  "enableCors": false,
+  "triggerEventPath": "PostConfirmation.event.json"
+}
