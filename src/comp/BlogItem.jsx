@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import React from 'react'
 import { ToastsStore } from 'react-toasts'
 import { BlogForm } from './BlogForm'
-import { GroBtn } from './Inputs'
+import { Btn } from './Inputs'
 import { PostDate, PostTitle } from './Labels'
 import { Preview } from './Preview'
 
@@ -69,12 +69,12 @@ export function BlogItem(props) {
             {`- Posted: ${parseDate(createdAt)}`}
             {
             onDelete
-              ? <GroBtn onClick={onDelete}><DeleteIcon /></GroBtn>
+              ? <Btn onClick={onDelete}><DeleteIcon /></Btn>
               : null
             }
             {
             onEdit
-              ? <GroBtn onClick={openEditing}><EditIcon /></GroBtn>
+              ? <Btn onClick={openEditing}><EditIcon /></Btn>
               : null
             }
           </PostDate>
