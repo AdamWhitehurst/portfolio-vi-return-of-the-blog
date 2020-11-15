@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Auth } from 'aws-amplify';
-import { ToastsStore } from 'react-toasts';
-import styled from 'styled-components';
-import { useAuth } from 'hook';
-import { InputField, GroBtn } from './Inputs';
-import { Label } from './Labels';
-import { SpcBtwnRowBx } from './Layouts';
+import { Auth } from 'aws-amplify'
+import { useAuth } from 'hook'
+import React, { useState } from 'react'
+import { ToastsStore } from 'react-toasts'
+import styled from 'styled-components'
+import { GroBtn, InputField } from './Inputs'
+import { Label } from './Labels'
+import { SpcBtwnRowBx } from './Layouts'
 
 const GrowPane = styled.div`
     overflow: hidden;
@@ -17,36 +17,36 @@ const GrowPane = styled.div`
     && `& button {
           padding-left: 0;
         }`}
-`;
+`
 
 const loginWith = (email, password) => async () => {
   try {
-    await Auth.signIn(email, password);
+    await Auth.signIn(email, password)
 
-    ToastsStore.info('Login successful!');
+    ToastsStore.info('Login successful!')
   } catch (error) {
-    ToastsStore.error(`Error logging in: ${error.code}`);
+    ToastsStore.error(`Error logging in: ${error.code}`)
   }
-};
+}
 
 const logout = async () => {
   try {
-    await Auth.signOut();
-    ToastsStore.info('Logged out.');
+    await Auth.signOut()
+    ToastsStore.info('Logged out.')
   } catch (error) {
-    ToastsStore.error(`Log out error: ${error.message}`);
+    ToastsStore.error(`Log out error: ${error.message}`)
   }
-};
+}
 
 export function LoginPane() {
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [email, setEmail] = useState('test@test.com');
-  const [password, setPassword] = useState('1234567890');
-  const isAuth = useAuth();
+  const [loginOpen, setLoginOpen] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const isAuth = useAuth()
 
-  const open = () => setLoginOpen(true);
-  const close = () => setLoginOpen(false);
-  const login = loginWith(email, password);
+  const open = () => setLoginOpen(true)
+  const close = () => setLoginOpen(false)
+  const login = loginWith(email, password)
 
   const renderLoginPane = (
     <>
@@ -73,11 +73,11 @@ export function LoginPane() {
         <GroBtn onClick={close}>CLOSE</GroBtn>
       </SpcBtwnRowBx>
     </>
-  );
+  )
 
   const renderCollapsedButton = isAuth
     ? <GroBtn onClick={logout}>LOG OUT</GroBtn>
-    : <GroBtn onClick={open}> OPEN LOGIN </GroBtn>;
+    : <GroBtn onClick={open}> OPEN LOGIN </GroBtn>
 
   return (
     <GrowPane expand={loginOpen}>
@@ -87,5 +87,5 @@ export function LoginPane() {
         : (renderCollapsedButton)
       }
     </GrowPane>
-  );
+  )
 }

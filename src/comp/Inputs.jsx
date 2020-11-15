@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 export const InputField = styled.input.attrs(
   (props) => ({
@@ -24,7 +24,7 @@ export const InputField = styled.input.attrs(
     font-style: italic;
     font-weight: 600;
   }
-`;
+`
 
 export const Editor = styled.textarea`
   flex: 1;
@@ -40,7 +40,7 @@ export const Editor = styled.textarea`
   padding: 0.5rem;
   font-family: "IBM Plex Mono", monospace;
   font-size: 12px;
-`;
+`
 
 export const Btn = styled.button`
   justify-self: left;
@@ -67,16 +67,15 @@ export const Btn = styled.button`
       color: #efefef;
     }
   }
-`;
+`
 export const GroBtn = styled(Btn)`
+
   transition: font-size 0.1s;
   &:hover {
     font-size: 1.4rem;
   }
-`;
+`
 
 export function MdEditor(props) {
-  return (
-    <Editor {...props} />
-  );
+  return <Editor {...props} />
 }

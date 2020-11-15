@@ -1,20 +1,20 @@
 import {
   gql, useMutation, useQuery, useSubscription,
-} from '@apollo/client';
-import { useAuth } from 'hook';
-import React, { useEffect } from 'react';
-import { ToastsStore } from 'react-toasts';
-import styled from 'styled-components';
-import { BlogItem } from './BlogItem';
+} from '@apollo/client'
+import { useAuth } from 'hook'
+import React, { useEffect } from 'react'
+import { ToastsStore } from 'react-toasts'
+import styled from 'styled-components'
+import { BlogItem } from './BlogItem'
 
-const chronological = (a, b) => Number(b.blogID) - Number(a.blogID);
+const chronological = (a, b) => Number(b.blogID) - Number(a.blogID)
 
 const PostCntnr = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   max-width: 1280px;
-`;
+`
 
 const postCreatedSubscription = gql`
 subscription OnCreatePost {
@@ -38,7 +38,7 @@ subscription OnCreatePost {
       owner
     }
   }
-`;
+`
 
 const deleteSubscription = gql`
   subscription OnDeletePost {
@@ -46,7 +46,7 @@ const deleteSubscription = gql`
         id
       }
   }
-`;
+`
 
 const listPosts = gql`
   query ListPosts(
@@ -74,7 +74,7 @@ const listPosts = gql`
       nextToken
     }
   }
-`;
+`
 
 const deletePost = gql`
   mutation MyMutation($id: ID! ) {
@@ -82,26 +82,27 @@ const deletePost = gql`
         id
       }
   }
-`;
+`
 
 export function BlogList() {
   const {
     data,
     subscribeToMore,
     refetch,
-  } = useQuery(listPosts);
+  } = useQuery(listPosts)
   const [
     deletePostFn,
-  ] = useMutation(deletePost);
+  ] = useMutation(deletePost)
   const {
     deletedData,
-  } = useSubscription(deleteSubscription);
+  } = useSubscription(deleteSubscription)
 
-  const isAuth = useAuth();
+  const isAuth = useAuth()
 
   useEffect(() => {
-    refetch();
-  }, [deletedData]);
+    refetch()
+    // eslint-disable-next-line
+  }, [deletedData])
 
   useEffect(() => {
     const unsCreate = subscribeToMore({
@@ -116,23 +117,23 @@ export function BlogList() {
               onCreatePost,
             ],
           },
-        };
-        return newData;
+        }
+        return newData
       },
       onError: () => {},
-    });
+    })
 
-    return () => { unsCreate(); };
-  });
+    return () => { unsCreate() }
+  })
 
   const deleteItem = (itm) => async () => {
     try {
-      await deletePostFn({ variables: { id: itm.id, title: itm.title } });
-      refetch();
+      await deletePostFn({ variables: { id: itm.id, title: itm.title } })
+      refetch()
     } catch (e) {
-      ToastsStore.error(e);
+      ToastsStore.error(e)
     }
-  };
+  }
 
   const toBlogItem = (itm) => (
     <BlogItem
@@ -140,7 +141,7 @@ export function BlogList() {
       onDelete={isAuth && deleteItem(itm)}
       {...itm}
     />
-  );
+  )
 
   return (
     <PostCntnr>
@@ -148,5 +149,5 @@ export function BlogList() {
         data?.listPosts?.items?.map((i) => i).sort(chronological).map(toBlogItem)
       }
     </PostCntnr>
-  );
+  )
 }

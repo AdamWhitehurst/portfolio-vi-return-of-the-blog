@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter as Router, Link,
-} from 'react-router-dom';
-import { ToastsContainer, ToastsStore } from 'react-toasts';
+} from 'react-router-dom'
+import { ToastsContainer, ToastsStore } from 'react-toasts'
 import {
   BigLabel,
 
@@ -14,7 +14,7 @@ import {
   MainSidebarSplit, Sgntr,
 
   Sidebar,
-} from './comp';
+} from './comp'
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
       <Sgntr />
       <ToastsContainer store={ToastsStore} />
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

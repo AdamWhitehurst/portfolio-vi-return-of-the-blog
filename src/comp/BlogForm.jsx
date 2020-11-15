@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { ToastsStore } from 'react-toasts';
-import { gql, useMutation } from '@apollo/client';
-import { DateTime } from 'luxon';
-import styled from 'styled-components';
+import { gql, useMutation } from '@apollo/client'
 import {
-  MdEditor,
+  usePersistentState,
+} from 'hook'
+import { DateTime } from 'luxon'
+import React from 'react'
+import { ToastsStore } from 'react-toasts'
+import styled from 'styled-components'
+import {
   Btn,
   InputField,
-} from './Inputs';
+  MdEditor,
+} from './Inputs'
 import {
-  RowBx,
-  ColBx,
-} from './Layouts';
-import {
-  InputHighlight,
-} from './Labels';
+  ColBx, RowBx,
+} from './Layouts'
+import { Preview } from './Preview'
 
 const Cntnr = styled(ColBx)`
     min-height: 10rem;
@@ -22,7 +22,7 @@ const Cntnr = styled(ColBx)`
     & .inputField {
       font-size: 1.4rem;
     }
-`;
+`
 
 const createPost = gql`
 mutation MyMutation($blogID: ID!, $content: String!, $id: ID!, $title: String!) {
@@ -35,62 +35,96 @@ mutation MyMutation($blogID: ID!, $content: String!, $id: ID!, $title: String!) 
     content
     blogID
   }
-}`;
+}`
 
-export function BlogForm() {
-  const [createPostFn, result] = useMutation(createPost);
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+export function BlogForm(props) {
+  const {
+    id,
+    title: t,
+    content: c,
+    onPost,
+  } = props
+  const [createPostFn, result] = useMutation(createPost)
+  const [title, setEditedTitle] = usePersistentState(`newPostTitle${id ? `-${id}` : ''}`, t)
+  const [content, setEditedContent] = usePersistentState(`newPostContent${id ? `-${id}` : ''}`, c)
+  const [showPreview, setShowPreview] = React.useState(false)
 
-  const postPost = async () => {
+  const togglePreview = () => setShowPreview((state) => !state)
+
+  const postNewPost = async () => {
     try {
-      const idStr = DateTime.local().toFormat('yLLddHHmmss');
+      const idStr = DateTime.local().toFormat('yLLddHHmmss')
       await createPostFn({
         variables: {
           blogID: idStr, content, id: idStr, title,
         },
-      });
+      })
 
-      setTitle('');
-      setContent('');
+      setEditedTitle('')
+      setEditedContent('')
     } catch (e) {
-      ToastsStore.error(e.message, 4000);
+      ToastsStore.error(e.message, 4000)
     }
-  };
+  }
 
-  const validInputs = !!(title && content);
-  const disableAllInputs = result.loading;
+  const doPost = () => {
+    const newPost = {
+      ...props,
+      content,
+      title,
+    }
+
+    if (onPost) onPost(newPost)
+    else postNewPost(newPost)
+  }
+
+  const validInputs = !!(title && content)
+  const disableAllInputs = result.loading
 
   const btnProps = {
     disabled: !validInputs || disableAllInputs,
-    onClick: postPost,
-  };
+    onClick: doPost,
+  }
 
   const titleFieldProps = {
     placeholder: 'Required',
     disabled: disableAllInputs,
     value: title,
-    onChange: (e) => setTitle(e.target.value),
+    onChange: (e) => setEditedTitle(e.target.value),
     className: 'TEST',
-  };
+  }
 
   const contentEditorProps = {
     value: content,
     disabled: disableAllInputs,
-    onChange: (e) => setContent(e.target.value),
-  };
+    onChange: (e) => setEditedContent(e.target.value),
+  }
+
+  const previewProps = {
+    mdInput: content,
+  }
+
+  const toggleProps = {
+    onClick: togglePreview,
+  }
+
+  const previewLabel = showPreview ? 'Edit' : 'Preview'
 
   return (
     <Cntnr>
       <ColBx>
         <InputField {...titleFieldProps} />
-        <InputHighlight />
       </ColBx>
-      <MdEditor {...contentEditorProps} />
-      <RowBx>
-        <Btn {...btnProps}>Create Post</Btn>
+      {
+        showPreview
+          ? <Preview {...previewProps} />
+          : <MdEditor {...contentEditorProps} />
+      }
+      <RowBx reverse>
+        <Btn {...btnProps}>Post</Btn>
+        <Btn {...toggleProps}>{previewLabel}</Btn>
       </RowBx>
     </Cntnr>
 
-  );
+  )
 }

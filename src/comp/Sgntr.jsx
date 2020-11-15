@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { ReactComponent as SVG } from './signature.svg';
+import styled from 'styled-components'
+import { ReactComponent as SVG } from './signature.svg'
 
 export const Sgntr = styled(SVG)`
   position: absolute;
@@ -44,4 +44,4 @@ export const Sgntr = styled(SVG)`
 
     } */
   }
-`;
+`
