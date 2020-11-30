@@ -44,5 +44,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
+  },
+  "storage": {
+    "blog": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

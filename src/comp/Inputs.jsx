@@ -26,7 +26,7 @@ export const InputField = styled.input.attrs(
   }
 `
 
-export const Editor = styled.textarea`
+export const Editor = styled.textarea.attrs({ type: 'text' })`
   flex: 1;
   background-color: #ffffff05 ;
   resize: none;
@@ -77,5 +77,19 @@ export const GroBtn = styled(Btn)`
 `
 
 export function MdEditor(props) {
-  return <Editor {...props} />
+  const ref = React.useRef()
+  React.useEffect(() => {
+    if (!ref.current) return
+
+    ref.current.addEventListener('paste', (event) => {
+      event.preventDefault()
+      event.stopPropagation()
+      const paste = event.clipboardData
+      const paste2 = window.clipboardData
+      const { files } = event.clipboardData
+      console.log(JSON.stringify(files))
+      console.log('paste: ', paste, paste2)
+    })
+  })
+  return <Editor {...props} ref={ref} type="text" />
 }

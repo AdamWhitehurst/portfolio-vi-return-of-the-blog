@@ -102,7 +102,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-blog-dev-111033-deployment",
-          "S3Key": "amplify-builds/blog31862aa1PostConfirmation-75674f456330414d2b57-build.zip"
+          "S3Key": "amplify-builds/blog31862aa1PostConfirmation-76464f3970507638674c-build.zip"
         }
       }
     },
