@@ -113,6 +113,29 @@ export function RoguieCanvas() {
       <RowBx id="roguie-btns">
         <Btn onClick={startRecording}><RecordIcon /></Btn>
         <Btn onClick={stopRecording}><StopRecordIcon /></Btn>
+        <p style={{ color: 'white' }}>
+          <b>Note: This is a major WIP. Red circle records, White square stops record</b>
+          <br />
+          Press
+          {'   '}
+          <code>G</code>
+          {'   '}
+          to grab items.
+          <br />
+          Press
+          {'   '}
+          <code>.</code>
+          {'   '}
+          to descend when you find stairs.
+          <br />
+          <code>I</code>
+          {'   '}
+          opens inventory.
+          <br />
+          <code>D</code>
+          {'   '}
+          opens drop menu.
+        </p>
       </RowBx>
     </CanvasContainer>
   )
