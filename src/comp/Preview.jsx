@@ -12,6 +12,45 @@ flex: 1;
   margin-left: 0.25rem;
   padding: 0.5rem 1.5rem;
   overflow: auto;
+  line-height: 1.4rem;
+  vertical-align: bottom;
+  letter-spacing: 0.01rem;
+
+  & ol {
+    margin-left: 2rem;
+    padding: 1rem;
+  }
+  
+  & code {
+    background-color: #00000033;
+    border-radius: 2px;
+    padding: 0.1rem;
+    font-size: 0.9rem;
+  }
+
+  & p > img ,
+  & pre {
+    code {
+      background-color: unset;
+    }
+
+    font-family: monospace;
+    border-radius: 2px;
+    margin: 0.5rem 0 0.5rem 0;
+    padding: 0.25rem;
+    background-color: #00000033;
+  }
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
 `
 
 export function Preview({ mdInput }) {
