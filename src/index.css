@@ -108,6 +108,10 @@ button {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: goldenrod;
+}
+
 body {
   font-size: 100%;
 }
