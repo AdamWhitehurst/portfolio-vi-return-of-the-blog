@@ -16,7 +16,14 @@ flex: 1;
   vertical-align: bottom;
   letter-spacing: 0.01rem;
 
+  & p, 
+  & ul, 
   & ol {
+    margin-bottom: 1rem;
+  }
+
+  & ol, 
+  & ul {
     margin-left: 2rem;
     padding: 1rem;
   }

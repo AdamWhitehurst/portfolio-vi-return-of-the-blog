@@ -77,19 +77,20 @@ export const GroBtn = styled(Btn)`
 `
 
 export function MdEditor(props) {
-  const ref = React.useRef()
-  React.useEffect(() => {
-    if (!ref.current) return
+//   const handlePaste = (e) => {
+//     const clip = e.clipboardData || window.clipboardData
+//     const data = clip.files.item('Image')
+//     if(data) {
+//
+//       console.log(data)
+//
+//       // Stop data actually being pasted into div
+//       e.stopPropagation()
+//       e.preventDefault()
+//     }
+//
+//     // Do whatever with pasteddata
+//   }
 
-    ref.current.addEventListener('paste', (event) => {
-      event.preventDefault()
-      event.stopPropagation()
-      const paste = event.clipboardData
-      const paste2 = window.clipboardData
-      const { files } = event.clipboardData
-      console.log(JSON.stringify(files))
-      console.log('paste: ', paste, paste2)
-    })
-  })
-  return <Editor {...props} ref={ref} type="text" />
+  return <Editor {...props} contenteditable="true" type="text" />
 }

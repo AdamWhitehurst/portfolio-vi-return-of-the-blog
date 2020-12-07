@@ -280,3 +280,10 @@ textarea {
 button {
   cursor: pointer;
 }
+
+code {
+    background-color: #00000033;
+    border-radius: 2px;
+    padding: 0.1rem;
+    font-size: 0.9rem;
+  }
