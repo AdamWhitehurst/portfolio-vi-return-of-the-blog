@@ -30,6 +30,7 @@ type Post
   title: String!
   content: String!
   blogID: ID!
+  idTitle: String
   blog: Blog @connection(fields: ["blogID"])
   # comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
 }
