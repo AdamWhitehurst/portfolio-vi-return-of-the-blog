@@ -40,6 +40,20 @@ subscription OnCreatePost {
   }
 `
 
+const postUpdatedSubscription = gql`
+subscription PostSubscription {
+  onUpdatePost {
+    id
+    title
+    content
+    blogID
+    createdAt
+    updatedAt
+    owner
+  }
+}
+`
+
 const deleteSubscription = gql`
   subscription OnDeletePost {
       onDeletePost {
@@ -84,6 +98,19 @@ const deletePost = gql`
   }
 `
 
+const updatePost = gql`
+ mutation UpdatePost($blogID: ID!, $content: String!, $id: ID!, $title: String!) {
+  updatePost(input: {blogID: $blogID, title: $title, id: $id, content: $content}) {
+      id
+      title
+      content
+      blogID
+      createdAt
+      updatedAt
+    }
+  }
+`
+
 export function BlogList() {
   const {
     data,
@@ -96,10 +123,20 @@ export function BlogList() {
   const {
     deletedData,
   } = useSubscription(deleteSubscription)
+  const {
+    updatedData,
+  } = useSubscription(postUpdatedSubscription)
+
+  const [updatePostFn] = useMutation(updatePost)
+
+  console.log(updatedData, data, deletedData)
 
   const isAuth = useAuth()
 
   useEffect(() => {
+    // Why I'm doing this:
+    // Because I know that `refetch` won't change, and what I really want is
+    // to resync any time deletedData changes i.e. an item was deleted.
     refetch()
     // eslint-disable-next-line
   }, [deletedData])
@@ -135,10 +172,26 @@ export function BlogList() {
     }
   }
 
+  const editItem = async (item) => {
+    try {
+      const {
+        content, title, id, blogID,
+      } = item
+      await updatePostFn({
+        variables: {
+          blogID, content, id, title,
+        },
+      })
+    } catch (e) {
+      ToastsStore.error(e.message, 4000)
+    }
+  }
+
   const toBlogItem = (itm) => (
     <BlogItem
-      key={itm.id + itm.createdAt}
-      onDelete={isAuth && deleteItem(itm)}
+      key={itm.id + itm.createdAt + itm.updatedAt}
+      onDelete={isAuth ? deleteItem(itm) : undefined}
+      onEdit={isAuth ? editItem : undefined}
       {...itm}
     />
   )

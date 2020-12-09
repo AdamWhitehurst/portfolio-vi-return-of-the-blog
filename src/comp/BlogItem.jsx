@@ -1,7 +1,5 @@
-import { gql, useMutation } from '@apollo/client'
 import { DateTime } from 'luxon'
 import React from 'react'
-import { ToastsStore } from 'react-toasts'
 import { BlogForm } from './BlogForm'
 import { Btn } from './Inputs'
 import { PostDate, PostTitle } from './Labels'
@@ -11,42 +9,14 @@ const DeleteIcon = () => (<span role="img" aria-label="delete">❌</span>)
 const EditIcon = () => (<span role="img" aria-label="edit">🖊</span>)
 
 const parseDate = (dt) => DateTime.fromISO(dt).toLocaleString(DateTime.DATETIME_FULL)
-
-const updatePost = gql`
- mutation UpdatePost($blogID: ID!, $content: String!, $id: ID!, $title: String!) {
-  updatePost(input: {blogID: $blogID, title: $title, id: $id, content: $content}) {
-      id
-      title
-      content
-      blogID
-      createdAt
-      updatedAt
-    }
-  }
-`
+const punctuation = /[-='"\|\\\]\[\{\}]/g
+const spacedEmoji = /\s*[\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF]\s*/g
+const nonAlphaNum = /[^\w\d]/g
 
 export function BlogItem(props) {
-  const [updatePostFn] = useMutation(updatePost)
   const [editing, setEditing] = React.useState(false)
   const openEditing = () => setEditing(true)
   const closeEditing = () => setEditing(false)
-
-  const postUpdatePost = async (item) => {
-    try {
-      const {
-        content, title, id, blogID,
-      } = item
-      await updatePostFn({
-        variables: {
-          blogID, content, id, title,
-        },
-      })
-
-      closeEditing()
-    } catch (e) {
-      ToastsStore.error(e.message, 4000)
-    }
-  }
 
   const {
     id, title, content, onDelete, onEdit, createdAt,
@@ -54,7 +24,7 @@ export function BlogItem(props) {
 
   const blogFormProps = {
     ...props,
-    onPost: postUpdatePost,
+    onPost: onEdit,
     onClose: closeEditing,
   }
 
@@ -63,7 +33,7 @@ export function BlogItem(props) {
       ? <BlogForm {...blogFormProps} />
       : (
         <div id={id}>
-          <PostTitle>{title}</PostTitle>
+          <PostTitle>{title.replace(punctuation, '-')}</PostTitle>
           <Preview mdInput={content} />
           <PostDate>
             {`- Posted: ${parseDate(createdAt)}`}

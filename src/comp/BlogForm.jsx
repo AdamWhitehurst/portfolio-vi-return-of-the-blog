@@ -91,7 +91,6 @@ export function BlogForm(props) {
     disabled: disableAllInputs,
     value: title,
     onChange: (e) => setEditedTitle(e.target.value),
-    className: 'TEST',
   }
 
   const contentEditorProps = {
