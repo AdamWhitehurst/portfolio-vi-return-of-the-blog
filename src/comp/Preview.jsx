@@ -31,8 +31,8 @@ flex: 1;
   & code {
     background-color: #00000033;
     border-radius: 2px;
-    padding: 0.1rem;
-    font-size: 0.9rem;
+    padding: 0.15rem;
+    font-size: 1.1rem;
   }
 
   & p > img ,

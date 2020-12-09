@@ -27,14 +27,10 @@ export const InputField = styled.input.attrs(
 `
 
 export const Editor = styled.textarea.attrs({ type: 'text' })`
-  flex: 1;
   background-color: #ffffff05 ;
   resize: none;
-  min-width: 100%;
-  min-height: 10rem;
   border: none;
   border-radius: 1px;
-  /* border-left: 2px solid goldenrod; */
   color: #efefef;
   font-weight: bold;
   padding: 0.5rem;
@@ -76,21 +72,30 @@ export const GroBtn = styled(Btn)`
   }
 `
 
-export function MdEditor(props) {
-//   const handlePaste = (e) => {
-//     const clip = e.clipboardData || window.clipboardData
-//     const data = clip.files.item('Image')
-//     if(data) {
-//
-//       console.log(data)
-//
-//       // Stop data actually being pasted into div
-//       e.stopPropagation()
-//       e.preventDefault()
-//     }
-//
-//     // Do whatever with pasteddata
-//   }
+const defaultHeightLimit = 750 // px
 
-  return <Editor {...props} contenteditable="true" type="text" />
+export function MdEditor(props) {
+  const { heightLimit } = props
+  const ref = React.useRef()
+  React.useLayoutEffect(() => {
+    if (!ref.current) return
+    // Set the textarea's height based on amount of content
+    ref.current.style.minHeight = `${Math.min(ref.current.scrollHeight, heightLimit || defaultHeightLimit)}px`
+  })
+  //   const handlePaste = (e) => {
+  //     const clip = e.clipboardData || window.clipboardData
+  //     const data = clip.files.item('Image')
+  //     if(data) {
+  //
+  //       console.log(data)
+  //
+  //       // Stop data actually being pasted into div
+  //       e.stopPropagation()
+  //       e.preventDefault()
+  //     }
+  //
+  //     // Do whatever with pasteddata
+  //   }
+
+  return <Editor {...props} ref={ref} contenteditable="true" type="text" />
 }
