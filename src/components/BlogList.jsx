@@ -1,8 +1,8 @@
 import {
   gql, useMutation, useQuery, useSubscription,
 } from '@apollo/client'
-import { useAuth } from 'hook'
-import React, { useEffect } from 'react'
+import { useAuth } from '@hooks'
+import React from 'react'
 import { ToastsStore } from 'react-toasts'
 import styled from 'styled-components'
 import { BlogItem } from './BlogItem'
@@ -76,6 +76,7 @@ const listPosts = gql`
         blogID
         createdAt
         updatedAt
+        idTitle
         blog {
           id
           name
@@ -121,27 +122,27 @@ export function BlogList() {
     deletePostFn,
   ] = useMutation(deletePost)
   const {
-    deletedData,
+    data: deletedData,
+
   } = useSubscription(deleteSubscription)
-  const {
-    updatedData,
-  } = useSubscription(postUpdatedSubscription)
+
+  useSubscription(postUpdatedSubscription)
 
   const [updatePostFn] = useMutation(updatePost)
 
-  console.log(updatedData, data, deletedData)
-
   const isAuth = useAuth()
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Why I'm doing this:
     // Because I know that `refetch` won't change, and what I really want is
     // to resync any time deletedData changes i.e. an item was deleted.
+    // This circumvents having to keep some state of deleted posts and filter
+    // those from posts.
     refetch()
     // eslint-disable-next-line
   }, [deletedData])
 
-  useEffect(() => {
+  React.useEffect(() => {
     const unsCreate = subscribeToMore({
       document: postCreatedSubscription,
       updateQuery: (prev, { subscriptionData: { data: { onCreatePost } } }) => {

@@ -1,5 +1,5 @@
+import { useAuth } from '@hooks'
 import { Auth } from 'aws-amplify'
-import { useAuth } from 'hook'
 import React, { useState } from 'react'
 import { ToastsStore } from 'react-toasts'
 import styled from 'styled-components'

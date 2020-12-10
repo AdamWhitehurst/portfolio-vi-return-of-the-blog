@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import {
   useAuth,
-} from 'hook'
+} from '@hooks'
 import React from 'react'
 import {
   Route, Switch, useParams,
@@ -17,30 +17,38 @@ import {
   ColBx,
 } from './Layouts'
 
-const getPost = gql`
-  query MyQuery($id: ID!) {
-    getPost(id: $id) {
+const getPost = gql`query ListPosts($idTitle: String="") {
+  listPosts(filter: {idTitle: {contains: $idTitle}}) {
+    nextToken
+    items {
       blogID
       content
       createdAt
-      title
-      owner
       id
+      owner
+      title
       updatedAt
+      idTitle
     }
   }
-  `
-function Thing() {
-  const { id } = useParams()
+}`
+
+function SinglePost({ idTitle }) {
   const {
     data,
     error,
-  } = useQuery(getPost, { variables: { id } })
-
+  } = useQuery(getPost, { variables: { idTitle: idTitle.toLowerCase() } })
   if (!data) return null
   if (error) return null
+  return (<BlogItem {...data?.listPosts?.items?.[0]} />)
+}
 
-  return (<BlogItem {...data.getPost} />)
+function Thing() {
+  const { idTitle } = useParams()
+  if (!idTitle) {
+    return 'null'
+  }
+  return <SinglePost idTitle={idTitle} />
 }
 
 export function Blog() {
@@ -49,7 +57,7 @@ export function Blog() {
   return (
     <ColBx>
       <Switch>
-        <Route path="/blog/:id">
+        <Route path="/blog/:idTitle">
           <Thing />
         </Route>
         <Route path="/blog">

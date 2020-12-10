@@ -1,8 +1,3 @@
-import React from 'react'
-import {
-  BrowserRouter as Router, Link,
-} from 'react-router-dom'
-import { ToastsContainer, ToastsStore } from 'react-toasts'
 import {
   BigLabel,
 
@@ -14,14 +9,19 @@ import {
   MainSidebarSplit, Sgntr,
 
   Sidebar,
-} from './comp'
+} from '@components'
+import React from 'react'
+import {
+  BrowserRouter as Router, Link,
+} from 'react-router-dom'
+import { ToastsContainer, ToastsStore } from 'react-toasts'
 
 function App() {
   return (
     <Router>
       <Header>
         <BigLabel>
-          A Blog
+          Ablog
         </BigLabel>
       </Header>
       <MainSidebarSplit>

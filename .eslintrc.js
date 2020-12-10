@@ -26,6 +26,7 @@ module.exports = {
   ],
   rules: {
     semi: [2, 'never'],
+    'no-useless-escape': 0,
     'import/prefer-default-export': 0,
     'react/prop-types': 0,
     'react/jsx-filename-extension': 0,
@@ -37,9 +38,11 @@ module.exports = {
         moduleDirectory: ['node_modules', 'src/'],
       },
       alias: {
+        // Remember to update jsconfig.json
         map: [
-          ['hook', './src/hook'],
-          ['comp', './src/comp'],
+          ['@hooks', './src/hooks'],
+          ['@components', './src/components'],
+          ['@utils', './src/utils'],
         ],
         extensions: ['.js', '.jsx'],
       },

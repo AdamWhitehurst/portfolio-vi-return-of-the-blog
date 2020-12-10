@@ -1,5 +1,5 @@
+import { useMd } from '@hooks'
 import DOMPurify from 'dompurify'
-import { useMd } from 'hook'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -12,7 +12,7 @@ flex: 1;
   margin-left: 0.25rem;
   padding: 0.5rem 1.5rem;
   overflow: auto;
-  line-height: 1.4rem;
+  line-height: 1.5rem;
   vertical-align: bottom;
   letter-spacing: 0.01rem;
 

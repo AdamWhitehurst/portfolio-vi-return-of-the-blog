@@ -1,7 +1,8 @@
 import { gql, useMutation } from '@apollo/client'
 import {
   usePersistentState,
-} from 'hook'
+} from '@hooks'
+import { toIdTitle } from '@utils'
 import { DateTime } from 'luxon'
 import React from 'react'
 import { ToastsStore } from 'react-toasts'
@@ -25,8 +26,8 @@ const Cntnr = styled(ColBx)`
 `
 
 const createPost = gql`
-mutation MyMutation($blogID: ID!, $content: String!, $id: ID!, $title: String!) {
-  createPost(input: {blogID: $blogID, title: $title, id: $id, content: $content}) {
+mutation MyMutation($blogID: ID!, $content: String!, $id: ID!, $title: String!, $idTitle: String) {
+  createPost(input: {blogID: $blogID, title: $title, id: $id, content: $content, idTitle: $idTitle}) {
     id
     owner
     title
@@ -34,6 +35,7 @@ mutation MyMutation($blogID: ID!, $content: String!, $id: ID!, $title: String!) 
     createdAt
     content
     blogID
+    idTitle
   }
 }`
 
@@ -54,9 +56,10 @@ export function BlogForm(props) {
   const postNewPost = async () => {
     try {
       const idStr = DateTime.local().toFormat('yLLddHHmmss')
+      const idTitle = toIdTitle(id, title)
       await createPostFn({
         variables: {
-          blogID: idStr, content, id: idStr, title,
+          blogID: idStr, content, id: idStr, title, idTitle,
         },
       })
 

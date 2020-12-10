@@ -289,8 +289,9 @@ module.exports = function (webpackEnv) {
       '.wasm',
       ],
       alias: {
-        hook: path.resolve(__dirname, '../src/hook'),
-        comp: path.resolve(__dirname, '../src/comp'),
+        '@hooks': path.resolve(__dirname, '../src/hooks'),
+        '@utils': path.resolve(__dirname, '../src/utils'),
+        '@components': path.resolve(__dirname, '../src/components'),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
