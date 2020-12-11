@@ -11,7 +11,6 @@ export const ThreeRowGrid = styled.div`
 
 export const MainSidebarSplit = styled.div`
   display: grid;
-  min-width: 640px;
   grid-template-columns: 1fr;
   @media only screen and (min-width: 815px) {
     grid-template-columns: 175px 10fr;
@@ -33,8 +32,8 @@ export const Header = styled.div`
   ${({ reverse }) => (reverse
     ? 'flex-direction: row-reverse;' : null)}
   align-items: flex-end;
-  min-height: 65px;
-  padding-bottom: 1.5rem;
+  min-height: 60px;
+  padding-bottom: 1.25rem;
 `
 
 export const RowBx = styled.div`
@@ -42,7 +41,8 @@ export const RowBx = styled.div`
   flex-direction: row;
   ${({ reverse }) => (reverse
     ? 'flex-direction: row-reverse;' : null)}
-  padding: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
 `
 
 export const SpcBtwnRowBx = styled(RowBx)`
@@ -53,5 +53,6 @@ export const ColBx = styled.div`
   flex-direction: column;
   ${({ reverse }) => (reverse
     ? 'flex-direction: column-reverse;' : null)}
-  padding: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
 `

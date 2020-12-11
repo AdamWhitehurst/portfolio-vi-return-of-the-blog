@@ -43,27 +43,24 @@ export const Label = styled.label`
 export const BigLabel = styled.header`
 margin-right: 0.2rem;
 margin-top: 0.2rem;
-color: goldenrod;
-opacity: 0.33;
 line-height: 1.4rem;
 font-weight: 700;
-  font-size: 2rem;
-  font-style: italic;
-  opacity: 1;
-  color: white;
+font-size: 2rem;
+opacity: 1;
+color: white;
+font-style: italic;
 `
 
 const InnerPostTitle = styled.header`
   color: white;
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: 300;
+  font-size: 1.8rem;
+  font-weight: 700;
   line-height: 0.8rem;
   width: min-content;
   white-space: nowrap;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 `
 
 export const PostTitle = ({ children, ...props }) => (

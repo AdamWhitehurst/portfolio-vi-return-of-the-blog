@@ -15,6 +15,7 @@ flex: 1;
   line-height: 1.5rem;
   vertical-align: bottom;
   letter-spacing: 0.01rem;
+  max-width: 100vw;
 
   & p, 
   & ul, 
@@ -33,6 +34,10 @@ flex: 1;
     border-radius: 2px;
     padding: 0.15rem;
     font-size: 1.1rem;
+  }
+
+  & pre {
+    overflow: auto;
   }
 
   & p > img ,
@@ -56,6 +61,7 @@ flex: 1;
   & h {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    font-weight: normal;
   }
 
 `

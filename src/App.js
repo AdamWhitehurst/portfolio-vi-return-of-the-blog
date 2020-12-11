@@ -21,7 +21,7 @@ function App() {
     <Router>
       <Header>
         <BigLabel>
-          Ablog
+          A Blog
         </BigLabel>
       </Header>
       <MainSidebarSplit>

@@ -13,7 +13,7 @@ const PostCntnr = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-width: 1280px;
+  max-width: 100%;
 `
 
 const postCreatedSubscription = gql`
