@@ -9,10 +9,10 @@ export const InputField = styled.input.attrs(
 )`
   border: none;
   border-radius: 1px;
-  color: #efefef;
+  color: var(--text-default);
   margin-right: 0.2rem;
   width: 100%;
-  background-color: #ffffff05 ;
+  background-color: var(--input-bg);
   padding-left: 0.25rem;
   line-height: 0.5;
   font-weight: 300;
@@ -20,18 +20,18 @@ export const InputField = styled.input.attrs(
   font-size: 0.75rem;
 
   &::placeholder {
-    opacity: 0.33;
+    opacity: 1;
     font-style: italic;
     font-weight: 600;
   }
 `
 
 export const Editor = styled.textarea.attrs({ type: 'text' })`
-  background-color: #ffffff05 ;
+  background-color: var(--input-bg);
   resize: none;
   border: none;
   border-radius: 1px;
-  color: #efefef;
+  color: var(--text-default);
   font-weight: bold;
   padding: 0.5rem;
   font-family: "IBM Plex Mono", monospace;
@@ -40,7 +40,7 @@ export const Editor = styled.textarea.attrs({ type: 'text' })`
 
 export const Btn = styled.button`
   justify-self: left;
-  color: #efefef;
+  color: var(--text-default);
   font-weight: 700;
   background: none;
   border: none;
@@ -58,9 +58,9 @@ export const Btn = styled.button`
   &[disabled],
   &:disabled {
     cursor: unset;
-    opacity: 0.33;
+    opacity: 1;
     &:hover {
-      color: #efefef;
+      color: var(--text-default);
     }
   }
 `

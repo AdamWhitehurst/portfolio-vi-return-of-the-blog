@@ -22,7 +22,7 @@ export const PostDate = styled.p`
   font-style: italic;
   font-weight: 100;
   color: var(--text-default);
-  opacity: 0.5;
+  opacity: 1;
   margin-top: 1rem;
   padding-left: 0.5rem;
   justify-self: right;
@@ -34,7 +34,7 @@ export const Label = styled.label`
   margin: 0.2rem;
   white-space: nowrap;
   color: var(--accent);
-  opacity: 0.33;
+  opacity: 1;
   font-size: 1.2rem;
   line-height: 1.4rem;
   font-weight: 700;

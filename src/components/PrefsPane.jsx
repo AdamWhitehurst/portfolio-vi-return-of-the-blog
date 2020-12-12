@@ -11,6 +11,54 @@ const defaultColors = {
   textDefault: '#ffffff',
 }
 
+const randomColors = [
+  {
+    accent: '#97B55A',
+    base: '#2A2021',
+    textDefault: '#EDEBEE',
+  },
+  {
+    accent: '#BA394A',
+    base: '#EDEBEE',
+    textDefault: '#2A2021',
+  },
+  {
+    accent: '#c678dd',
+    base: '#282c34',
+    textDefault: '#abb2bf',
+  },
+  {
+    accent: '#268BD2',
+    base: '#FDF6E3',
+    textDefault: '#073642',
+  },
+  {
+    accent: '#e37933',
+    base: '#0e1112',
+    textDefault: '#d4d7d6',
+  },
+  {
+    accent: '#F6B4C8',
+    base: '#3D4752',
+    textDefault: '#E6E6E6',
+  },
+  {
+    accent: '#E11418',
+    base: '#DBF7FF',
+    textDefault: '#3E444F',
+  },
+  {
+    accent: '#10B9A6',
+    base: '#FFFFFF',
+    textDefault: '#272727',
+  },
+  {
+    accent: '#91E827',
+    base: '#0A0216',
+    textDefault: '#FAF9FC',
+  },
+]
+
 export function PrefsPane() {
   const [colors, setColors] = usePersistentState('themeColors', defaultColors)
   const [prefsOpen, setPrefsOpen] = useState(false)
@@ -68,6 +116,14 @@ function Prefs(props) {
   const apply = () => {
     onApply(colors)
   }
+
+  const rand = () => {
+    const randIdx = Math.floor(Math.random() * randomColors.length)
+    const newColors = { ...colors, ...randomColors[randIdx] }
+    setColors(newColors)
+    onApply(newColors)
+  }
+
   const setColorsFor = (key) => (e) => setColors({ ...colors, [key]: e.target.value })
 
   const baseInputProps = {
@@ -99,6 +155,11 @@ function Prefs(props) {
     id: 'closePrefs',
     onClick: close,
   }
+  const randBtnProps = {
+    ariaLabel: 'Randomize Colors',
+    id: 'randPrefs',
+    onClick: rand,
+  }
 
   return (
     <>
@@ -110,6 +171,7 @@ function Prefs(props) {
       <InputField {...textDefaultInputProps} />
       <SpcBtwnRowBx>
         <GroBtn {...applyBtnProps}>APPLY</GroBtn>
+        <GroBtn {...randBtnProps}> ?? </GroBtn>
         <GroBtn {...closeBtnProps}>CLOSE</GroBtn>
       </SpcBtwnRowBx>
     </>

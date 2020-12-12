@@ -113,7 +113,7 @@ export function RoguieCanvas() {
       <RowBx id="roguie-btns">
         <Btn onClick={startRecording}><RecordIcon /></Btn>
         <Btn onClick={stopRecording}><StopRecordIcon /></Btn>
-        <p style={{ color: 'white' }}>
+        <p>
           <b>Note: This is a major WIP. Red circle records, White square stops record</b>
           <br />
           Press

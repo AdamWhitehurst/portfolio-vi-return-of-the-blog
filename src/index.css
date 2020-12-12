@@ -48,6 +48,7 @@
   --base: #242424;
   --accent: #DAA52088;
   --text-default: #DAA52088;
+  --input-bg: #00000025;
 }
 
 /* The emerging W3C standard
@@ -79,6 +80,7 @@ body {
   line-height: 1.4rem;
   font-family: Manrope, sans-serif;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text-default);
 }
 
 * {

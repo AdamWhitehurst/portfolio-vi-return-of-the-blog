@@ -7,7 +7,6 @@ const PreviewContainer = styled.div`
 flex: 1;
   border-radius: 1px;
   border-left: 2px solid var(--accent);
-  color: #efefef;
   margin-top: 1rem;
   margin-left: 0.25rem;
   padding: 0.5rem 1.5rem;
@@ -16,6 +15,7 @@ flex: 1;
   vertical-align: bottom;
   letter-spacing: 0.01rem;
   max-width: 100vw;
+  color: var(--text-default);
 
   & p, 
   & ul, 
