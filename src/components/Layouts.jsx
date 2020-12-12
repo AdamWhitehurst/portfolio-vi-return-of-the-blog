@@ -62,7 +62,7 @@ export const GrowPane = styled.div`
     transition: height 0.25s;
     display: flex;
     flex-direction: column;
-    height: ${({ expand, height }) => (expand ? height || '132px' : '30px')};
+    height: ${({ expand, height = '132px' }) => (expand ? height : '30px')};
     ${({ expand }) => expand
     && `& button {
           padding-left: 0;

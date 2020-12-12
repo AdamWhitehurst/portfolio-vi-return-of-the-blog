@@ -40,7 +40,7 @@ export function PrefsPane() {
   }
 
   const growPaneProps = {
-    height: '232px',
+    height: '170px',
     expand: prefsOpen,
   }
 
