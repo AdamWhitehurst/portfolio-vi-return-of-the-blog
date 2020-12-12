@@ -56,6 +56,8 @@ const InnerPostTitle = styled.header`
   font-size: 1.8rem;
   font-weight: 700;
   line-height: 2rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
   margin-top: 1rem;
 `
 
