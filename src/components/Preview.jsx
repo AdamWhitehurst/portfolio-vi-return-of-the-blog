@@ -64,6 +64,61 @@ flex: 1;
     font-weight: normal;
   }
 
+  & .markdown-it-calendar {
+    overflow-x: auto;
+
+    & table tbody {
+      border: none!important;
+      
+    }
+  }
+
+  & .calendar {
+    color: var(--text-default);
+
+    & .calendar-week-name {
+      background-color: var(--accent);
+      color: var(--base);
+    }
+
+    & tbody tr:nth-child(2n) {
+      background-color: var(--input-bg);
+    }
+    
+    & .calendar-cell:hover {
+      background-color: unset;
+    }
+
+    & .calendar-cell-title {
+      background-color: unset;
+      color: var(--accent);
+    }
+    
+    
+    & .calendar-content-tag {
+      color: rgba(var(--text-default), 0.8);
+      &::before {
+        background-color: var(--accent);
+        top: 10px;
+        left: 2px;
+      }
+      &:hover {
+        color: var(--accent);
+      }
+    }
+    
+    & .calendar-cell-date {
+      left: 2px;
+      height: 20px;
+      width: 20px;
+    }
+    
+    & td {
+      min-height: 40px;
+      min-width: 100px;
+      vertical-align: baseline;
+    }
+  }
 `
 
 export function Preview({ mdInput }) {
