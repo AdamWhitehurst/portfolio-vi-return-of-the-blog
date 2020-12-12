@@ -2,22 +2,9 @@ import { useAuth } from '@hooks'
 import { Auth } from 'aws-amplify'
 import React, { useState } from 'react'
 import { ToastsStore } from 'react-toasts'
-import styled from 'styled-components'
 import { GroBtn, InputField } from './Inputs'
 import { Label } from './Labels'
-import { SpcBtwnRowBx } from './Layouts'
-
-const GrowPane = styled.div`
-    overflow: hidden;
-    transition: height 0.25s;
-    display: flex;
-    flex-direction: column;
-    height: ${({ expand }) => (expand ? '132px' : '30px')};
-    ${({ expand }) => expand
-    && `& button {
-          padding-left: 0;
-        }`}
-`
+import { GrowPane, SpcBtwnRowBx } from './Layouts'
 
 const loginWith = (email, password) => async () => {
   try {

@@ -10,3 +10,5 @@ export const toIdTitle = (id, title) => `${title
   .toLowerCase()
   .split(' ')
   .join('_')}_${id}`
+
+export const toSlugCase = (str) => str.replace(/([A-Z])/g, '-$1').toLowerCase()
