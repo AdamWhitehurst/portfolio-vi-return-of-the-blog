@@ -52,7 +52,7 @@ export const Btn = styled.button`
   line-height: 1.4rem;
 
   &:hover {
-    color: goldenrod;
+    color: var(--accent);
     opacity: 50%;
   }
   &[disabled],

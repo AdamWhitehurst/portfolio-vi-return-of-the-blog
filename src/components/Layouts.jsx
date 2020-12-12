@@ -56,3 +56,15 @@ export const ColBx = styled.div`
   padding-bottom: 0.25rem;
   padding-top: 0.25rem;
 `
+
+export const GrowPane = styled.div`
+    overflow: hidden;
+    transition: height 0.25s;
+    display: flex;
+    flex-direction: column;
+    height: ${({ expand, height }) => (expand ? height || '132px' : '30px')};
+    ${({ expand }) => expand
+    && `& button {
+          padding-left: 0;
+        }`}
+`

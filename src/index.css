@@ -44,11 +44,17 @@
   font-weight: 600;
 }
 
+:root {
+  --base: #242424;
+  --accent: #DAA52088;
+  --text-default: #DAA52088;
+}
+
 /* The emerging W3C standard
    that is currently Firefox-only */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #daa52088 #ffffff00;
+  scrollbar-color: var(--accent)#ffffff00;
 }
 
 /* Works on Chrome/Edge/Safari */
@@ -68,7 +74,7 @@ html {
 }
 
 body {
-  background-color: #242424;
+  background-color: var(--base);
   margin: 0;
   line-height: 1.4rem;
   font-family: Manrope, sans-serif;
@@ -109,7 +115,7 @@ button {
 }
 
 a {
-  color: goldenrod;
+  color: var(--accent);
 }
 
 body {

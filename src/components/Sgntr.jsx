@@ -15,7 +15,7 @@ export const Sgntr = styled(SVG)`
     stroke-linejoin: round;
     stroke-miterlimit: 4;
     stroke-opacity: 50%;
-    stroke: goldenrod;
+    stroke: var(--accent);
     stroke-dasharray: 2575;
     stroke-dashoffset: 2575;
     animation: draw 20s linear infinite;

@@ -6,7 +6,9 @@ import {
   LoginPane,
   MainContent,
 
-  MainSidebarSplit, Sgntr,
+  MainSidebarSplit,
+
+  PrefsPane, Sgntr,
 
   Sidebar,
 } from '@components'
@@ -37,6 +39,7 @@ function App() {
             </GroBtn>
           </Link>
           <LoginPane />
+          <PrefsPane />
         </Sidebar>
         <MainContent />
       </MainSidebarSplit>

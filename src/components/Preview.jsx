@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const PreviewContainer = styled.div`
 flex: 1;
   border-radius: 1px;
-  border-left: 2px solid goldenrod;
+  border-left: 2px solid var(--accent);
   color: #efefef;
   margin-top: 1rem;
   margin-left: 0.25rem;
