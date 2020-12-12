@@ -55,17 +55,12 @@ const InnerPostTitle = styled.header`
   color: white;
   font-size: 1.8rem;
   font-weight: 700;
-  line-height: 0.8rem;
-  width: min-content;
-  white-space: nowrap;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  line-height: 2rem;
   margin-top: 1rem;
 `
 
 export const PostTitle = ({ children, ...props }) => (
   <InnerPostTitle {...props}>
     {children}
-    {/* <Highlight /> */}
   </InnerPostTitle>
 )
