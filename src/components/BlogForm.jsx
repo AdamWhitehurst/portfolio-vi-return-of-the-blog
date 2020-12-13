@@ -56,7 +56,7 @@ export function BlogForm(props) {
   const postNewPost = async () => {
     try {
       const idStr = DateTime.local().toFormat('yLLddHHmmss')
-      const idTitle = toIdTitle(id, title)
+      const idTitle = toIdTitle(title, id)
       await createPostFn({
         variables: {
           blogID: idStr, content, id: idStr, title, idTitle,

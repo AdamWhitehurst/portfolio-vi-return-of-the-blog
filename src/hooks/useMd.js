@@ -1,10 +1,11 @@
+// import markdownItTocAndAnchor from 'markdown-it-toc-and-anchor'
 import markdownItMermaid from '@liradb2000/markdown-it-mermaid'
+import { toIdTitle } from '@utils'
 import DOMPurify from 'dompurify'
 import hljs from 'highlight.js'
 import MarkdownIt from 'markdown-it'
 import calendar from 'markdown-it-calendar'
 import container from 'markdown-it-container'
-// import markdownItTocAndAnchor from 'markdown-it-toc-and-anchor'
 import wikilinks from 'markdown-it-wikilinks'
 import { ToastsStore } from 'react-toasts'
 
@@ -25,7 +26,11 @@ export function useMd() {
       return '' // use external default escaping
     },
   })
-    .use(wikilinks)
+    .use(wikilinks({
+      uriSuffix: '',
+      relativeBaseURL: '/blog/',
+      generatePageNameFromLabel: toIdTitle,
+    }))
     .use(markdownItMermaid)
     // .use(markdownItTocAndAnchor, {
     //   anchorLinkSymbol: '',

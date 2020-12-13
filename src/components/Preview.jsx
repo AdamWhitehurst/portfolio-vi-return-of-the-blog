@@ -73,7 +73,14 @@ const PreviewContainer = styled.div`
     }
   }
 
-  & .calendar {
+  .markdown-it-calendar>.calendar>tbody>tr>td {
+    max-width: unset;
+  }
+  .markdown-it-calendar .calendar {
+    width: 100%;
+  }
+
+   & .calendar {
     color: var(--text-default);
 
     & .calendar-week-name {
@@ -118,7 +125,7 @@ const PreviewContainer = styled.div`
       min-width: 100px;
       vertical-align: baseline;
     }
-  }
+   }
 
   & details summary {
     /* color: var(--accent); */
