@@ -1,7 +1,9 @@
 import markdownItMermaid from '@liradb2000/markdown-it-mermaid'
+import DOMPurify from 'dompurify'
 import hljs from 'highlight.js'
 import MarkdownIt from 'markdown-it'
 import calendar from 'markdown-it-calendar'
+import container from 'markdown-it-container'
 // import markdownItTocAndAnchor from 'markdown-it-toc-and-anchor'
 import wikilinks from 'markdown-it-wikilinks'
 import { ToastsStore } from 'react-toasts'
@@ -30,4 +32,21 @@ export function useMd() {
     //   wrapHeadingTextInAnchor: true,
     // })
     .use(calendar)
+    .use(container, 'spoiler', {
+
+      validate(params) {
+        return params.trim().match(/^spoiler\s+(.*)$/)
+      },
+
+      render(tokens, idx) {
+        const m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/)
+
+        if (tokens[idx].nesting === 1) {
+          // opening tag
+          return `<details><summary>${DOMPurify.sanitize(m[1])}</summary>\n`
+        }
+        // closing tag
+        return '</details>\n'
+      },
+    })
 }

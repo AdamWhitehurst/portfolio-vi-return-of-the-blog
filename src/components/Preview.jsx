@@ -4,7 +4,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const PreviewContainer = styled.div`
-flex: 1;
+  flex: 1;
   border-radius: 1px;
   border-left: 2px solid var(--accent);
   margin-top: 1rem;
@@ -117,6 +117,27 @@ flex: 1;
       min-height: 40px;
       min-width: 100px;
       vertical-align: baseline;
+    }
+  }
+
+  & details summary {
+    /* color: var(--accent); */
+    cursor: pointer;
+
+    &::before {
+      color: var(--accent);
+      top: 10px;
+      left: 2px;
+      content: '> ';
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  & details[open] summary {
+    color: var(--text-default);
+    &::before {
+      content: '^ ';
     }
   }
 `
