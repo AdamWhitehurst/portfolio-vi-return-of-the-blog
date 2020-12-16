@@ -31,6 +31,10 @@ module.exports = {
     'react/prop-types': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-props-no-spreading': 0,
+    'template-curly-spacing': 'off',
+    indent: ['error', 2, {
+      ignoredNodes: ['TemplateLiteral'],
+    }],
   },
   settings: {
     'import/resolver': {

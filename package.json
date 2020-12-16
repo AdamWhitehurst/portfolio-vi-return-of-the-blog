@@ -91,9 +91,6 @@
     "test": "node scripts/test.js",
     "deploy": "aws s3 sync build/ s3://adamwhitehur.st"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
